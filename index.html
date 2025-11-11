@@ -61,31 +61,35 @@
             @apply relative pl-6 text-slate-300 before:content-['\2713'] before:absolute before:left-0 before:text-cyan-400 before:font-bold;
         }
         
-        /* --- [수정] 타임라인 스타일 --- */
+        /* --- [재수정] 2:8 비율 왼쪽 정렬 타임라인 --- */
+        .timeline-container {
+            /* 타임라인 전체 컨테이너, 왼쪽 패딩으로 STEP 영역 확보 */
+            @apply relative max-w-2xl mx-auto pl-[7rem]; /* 7rem (112px)을 STEP+라인 영역으로 사용 */
+        }
         .timeline-line {
-            @apply absolute left-1/2 top-0 h-full w-0.5 bg-slate-700 -translate-x-1/2;
+            /* 세로선: STEP 영역(7rem)에서 1rem 뺀 6rem에 위치 */
+            @apply absolute left-[6rem] top-0 h-full w-0.5 bg-slate-700;
+        }
+        .timeline-item {
+            /* 각 아이템 래퍼 */
+            @apply relative mb-12;
+        }
+        .timeline-step-label {
+            /* STEP 레이블: 0~6rem 영역에서 오른쪽 정렬 (pr-4 패딩) */
+            @apply absolute left-[-7rem] top-1 w-[6rem] pr-4 text-right text-sm text-slate-400 font-medium;
         }
         .timeline-dot {
-            /* z-10 추가해서 카드 꼬리표보다 위에 보이게 함 */
-            @apply absolute left-1/2 top-1 w-5 h-5 bg-gradient-to-b from-cyan-300 to-purple-400 rounded-full border-4 border-slate-950 -translate-x-1/2 z-10;
+            /* 점: 6rem 위치의 세로선 중앙에 위치 */
+            @apply absolute left-[-1rem] top-1 w-5 h-5 bg-gradient-to-b from-cyan-300 to-purple-400 rounded-full border-4 border-slate-950 z-10; 
+            /* left: -1rem; == (pl-7rem) - (line left-6rem) - (dot width 0.5rem) */
         }
-        
-        /* 오른쪽 카드 (기본) */
         .timeline-card {
+            /* 카드: 기본 왼쪽 마진(pl-7rem)을 따름 */
             @apply relative bg-slate-900/60 backdrop-blur-md p-6 rounded-lg shadow-lg border border-slate-700/50;
         }
         .timeline-card::before {
-            /* 왼쪽을 가리키는 꼬리표 */
+            /* 꼬리표: 카드 왼쪽(-left-2)에서 세로선(-1rem)을 향해 뻗음 */
             @apply content-[''] absolute top-4 -left-2 w-4 h-4 bg-slate-900/60 border-l border-b border-slate-700/50 rotate-45;
-        }
-
-        /* [추가] 왼쪽 카드용 스타일 */
-        .timeline-card-left {
-            @apply relative bg-slate-900/60 backdrop-blur-md p-6 rounded-lg shadow-lg border border-slate-700/50;
-        }
-        .timeline-card-left::before {
-            /* 오른쪽을 가리키는 꼬리표 */
-            @apply content-[''] absolute top-4 -right-2 w-4 h-4 bg-slate-900/60 border-r border-t border-slate-700/50 rotate-45;
         }
         /* --- 타임라인 스타일 끝 --- */
 
@@ -220,39 +224,39 @@
                     <h4 class="card-heading">문제 해결 로드맵 (1인 프로젝트)</h4>
                     <p class="body-text mb-10">단순한 기능 구현을 넘어, 1인 개발자로서 3가지 핵심 기술적 난제를 진단하고 해결했습니다.</p>
                     
-                    <div class="relative max-w-2xl mx-auto">
+                    <div class="timeline-container">
                         <div class="timeline-line"></div>
                         
-                        <div class="mb-12 relative flex justify-between items-start w-full">
-                            <span class="w-[calc(50%-2rem)] text-right text-sm text-slate-400 font-medium pt-1 pr-4">STEP 1</span>
+                        <div class="timeline-item">
+                            <span class="timeline-step-label">STEP 1</span>
                             <div class="timeline-dot"></div>
-                            <div class="timeline-card w-[calc(50%-2rem)]">
+                            <div class="timeline-card">
                                 <h5 class="font-bold text-white text-lg mb-2">문제: Google AI `v1beta` 404 에러</h5>
                                 <p class="text-slate-300">API 호출 시, `gemini-1.0-pro` 모델을 찾을 수 없다는 고질적인 `v1beta` 에러가 발생했습니다.</p>
                                 <p class="mt-3 font-medium text-cyan-300">▶ 해결: **Python 3.13**의 호환성 문제로 규명, `py -3.11` 및 `venv` 환경을 재설정하여 해결했습니다.</p>
                             </div>
                         </div>
 
-                        <div class="mb-12 relative flex justify-between items-start w-full">
-                            <div class="timeline-card-left w-[calc(50%-2rem)]">
+                        <div class="timeline-item">
+                            <span class="timeline-step-label">STEP 2</span>
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-card">
                                 <h5 class="font-bold text-white text-lg mb-2">문제: `gemini-pro` 무료 등급 호출 실패</h5>
                                 <p class="text-slate-300">환경 재설정 후에도 유료 모델 API 호출이 실패했습니다.</p>
                                 <p class="mt-3 font-medium text-cyan-300">▶ 해결: **`gemini-2.5-flash` (최신 무료 등급)** 모델을 사용하도록 디버깅하여 API 호출을 최종적으로 성공시켰습니다.</p>
                             </div>
-                            <div class="timeline-dot"></div>
-                            <span class="w-[calc(50%-2rem)] text-left text-sm text-slate-400 font-medium pt-1 pl-4">STEP 2</span>
                         </div>
 
-                        <div class="relative flex justify-between items-start w-full"> <span class="w-[calc(50%-2rem)] text-right text-sm text-slate-400 font-medium pt-1 pr-4">STEP 3</span>
+                        <div class="timeline-item relative"> <span class="timeline-step-label">STEP 3</span>
                             <div class="timeline-dot"></div>
-                            <div class="timeline-card w-[calc(50%-2rem)]">
+                            <div class="timeline-card">
                                 <h5 class="font-bold text-white text-lg mb-2">문제: `Dynamic Map` (VPC) 인증 실패</h5>
                                 <p class="text-slate-300">백엔드(AI) 성공 후, 프론트엔드에서 `LatLngBounds` 에러가 발생하며 지도를 띄울 수 없었습니다.</p>
                                 <p class="mt-3 font-medium text-cyan-300">▶ 해결: 'VPC' 계정은 'Web JS' API를 쓸 수 없음을 규명, **`Static Map (Base64)` 방식으로 아키텍처를 '피벗'**하여 프로젝트를 완성시켰습니다.</p>
                             </div>
                         </div>
                     </div>
-                </div>
+                    </div>
                 
                 <div>
                     <h4 class="card-heading">핵심 기능 상세</h4>
@@ -316,7 +320,7 @@
                 
                 <div class="card space-y-4">
                     <h4 class="card-heading text-center">아키텍처 다이어그램</h4>
-                    <img src="https://placehold.co/800x450/1e293b/22d3ee?text=Architecture+Diagram" 
+                    <img src="httpsB://placehold.co/800x450/1e293b/22d3ee?text=Architecture+Diagram" 
                          alt="아키텍처 다이어그램" 
                          class="rounded-lg shadow-md w-full border border-slate-700">
                     <p class="text-sm text-center text-slate-400">[사용자] → [React] → [FastAPI] → [Gemini & NCP APIs] → [Base64 이미지] → [React `<img>`]</p>
