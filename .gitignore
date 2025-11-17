@@ -1,8 +1,14 @@
 # plan-ai/.gitignore
 
-# Python
+# Python Environment
 backend/.venv/
-backend/.env
+backend/__pycache__/
+backend/app/__pycache__/
+backend/.env # ⬅️ 비밀키 파일
 
-# macOS
+# Node Modules (Frontend)
+frontend/node_modules/
+frontend/dist/ # 빌드된 결과물
+
+# OS Files
 .DS_Store
