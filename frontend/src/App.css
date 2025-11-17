@@ -1,0 +1,124 @@
+/* App.jsx의 메인 컨테이너와 
+  버튼, 입력창 등의 스타일을 정의합니다.
+*/
+
+.plan-ai-container {
+  width: 100%;
+  max-width: 600px; /* 앱의 최대 너비 고정 */
+  min-height: 400px;
+  padding: 2rem;
+  background-color: #1a1a1a;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  
+  /* 단계가 바뀔 때 부드럽게 전환 */
+  transition: all 0.3s ease;
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* 웰컴 스크린 스타일 */
+.welcome-screen {
+  text-align: center;
+}
+
+.welcome-screen h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #58a6ff; /* 포인트 컬러 */
+  margin-bottom: 1rem;
+}
+
+.welcome-screen p {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 2rem;
+}
+
+/* 입력 폼 단계 스타일 */
+.form-step {
+  display: flex;
+  flex-direction: column;
+}
+
+.step-title {
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  color: #c9d1d9;
+}
+
+.form-label {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.form-input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-size: 1.1rem;
+  background-color: #2c2c2c;
+  border: 1px solid #444;
+  border-radius: 8px;
+  color: white;
+  margin-bottom: 1.5rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #58a6ff;
+  box-shadow: 0 0 0 3px rgba(88, 166, 255, 0.3);
+}
+
+/* 버튼 스타일 */
+.navigation-buttons {
+  display: flex;
+  justify-content: space-between; /* 이전/다음 버튼 양쪽 정렬 */
+  margin-top: 1rem;
+}
+
+.btn {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+/* 주요 버튼 (시작, 다음) */
+.btn-primary {
+  background-color: #58a6ff;
+  color: #1a1a1a;
+}
+.btn-primary:hover {
+  background-color: #79b8ff;
+}
+
+/* 보조 버튼 (이전) */
+.btn-secondary {
+  background-color: #333;
+  color: #c9d1d9;
+}
+.btn-secondary:hover {
+  background-color: #444;
+}
+
+/* 중앙 정렬 버튼 (웰컴 스크린용) */
+.btn-center {
+  margin-top: 1rem;
+  width: 100%;
+  padding: 1rem;
+  font-size: 1.1rem;
+}

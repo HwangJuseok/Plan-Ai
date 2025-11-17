@@ -1,0 +1,37 @@
+/* Vite 기본 스타일을 제거하고,
+  웹사이트 전체의 기본 스타일을 설정합니다.
+*/
+
+/* 폰트: 시스템 기본 폰트 중 가장 깔끔한 것을 사용 */
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424; /* 어두운 배경색 */
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* 모든 요소의 기본 마진, 패딩, 박스 계산법 초기화 */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  /* flex를 이용해 앱을 항상 화면 정중앙에 위치시킴 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

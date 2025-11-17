@@ -1,0 +1,8 @@
+# plan-ai/.gitignore
+
+# Python
+backend/.venv/
+backend/.env
+
+# macOS
+.DS_Store
